@@ -1,6 +1,5 @@
 package com.tiltedplay.foodromeo.splashscreen;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,7 +10,7 @@ import com.tiltedplay.foodromeo.R;
 /**
  * Created by Akshay1 on 28-Oct-15.
  */
-public class SplashScreen extends AppCompatActivity {
+public class SplashScreenActivity extends AppCompatActivity {
 
     private static int Splash_timeout = 3000;
 
@@ -23,7 +22,7 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(SplashScreen.this,PaginationLayout.class);
+                Intent i = new Intent(SplashScreenActivity.this,PaginationLayoutActivity.class);
                 startActivity(i);
 
                 finish();
