@@ -19,16 +19,31 @@ import com.tiltedplay.foodromeo.R;
 
 public class PaginationLayoutActivity extends AppCompatActivity {
 
-    private ViewFlipper viewFlipper;
-    private float lastX;
-
-    Button prevButton;
-    Button nxtButton;
+    Button leftButton;
+    Button rightButton;
+    ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagination);
+
+        leftButton = (Button)findViewById(R.id.left_button);
+        rightButton = (Button)findViewById(R.id.right_button);
+
+        leftButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(getItem(-1),true);
+            }
+        });
+
+        rightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(getItem(+1),true);
+            }
+        });
 
 //        Toolbar tbar = (Toolbar)findViewById(R.id.toolbar);
 //        setSupportActionBar(tbar);
@@ -49,7 +64,7 @@ public class PaginationLayoutActivity extends AppCompatActivity {
 
         CustomPagerAdapter mCustomPagerAdapter = new CustomPagerAdapter(this);
 
-        ViewPager mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mCustomPagerAdapter);
     }
 
@@ -86,6 +101,10 @@ public class PaginationLayoutActivity extends AppCompatActivity {
 //        }
 //        return false;
 //    }
+
+    private int getItem(int i){
+        return mViewPager.getCurrentItem() + i;
+    }
 
     class CustomPagerAdapter extends PagerAdapter {
 
